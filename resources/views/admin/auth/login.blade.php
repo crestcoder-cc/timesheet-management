@@ -459,10 +459,9 @@
                 @csrf
 
                 <div class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root">
-                    <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
-                           data-shrink="false" for="email">Email</label>
+{{--                    <label class="form-label" for="email">Email</label>--}}
                     <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root">
-                        <input aria-invalid="false" id="email" type="text" name="email"
+                        <input aria-invalid="false" id="email" type="text" name="email" placeholder="Email"
                                class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input" value="">
                         <fieldset aria-hidden="true" class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
                             <legend class="css-yjsfm1"><span>Email</span></legend>
@@ -472,10 +471,10 @@
                        style="font-size: 10px;"></p>
                 </div>
                 <div class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root">
-                    <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
-                           data-shrink="false" for="password">Password</label>
+{{--                    <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"--}}
+{{--                           data-shrink="false" for="password">Password</label>--}}
                     <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root">
-                        <input aria-invalid="false" id="password" type="password" name="password"
+                        <input aria-invalid="false" id="password" type="password" name="password" placeholder="Password"
                                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input" value="">
                         <div class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root">
                             <button id="togglePassword" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
@@ -494,7 +493,7 @@
                     <p class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
                        style="font-size: 10px;"></p>
                 </div>
-                <a class="_fpassword_1pic1_16" href="/forgotpassword">forgot password?</a>
+{{--                <a class="_fpassword_1pic1_16" href="/forgotpassword">forgot password?</a>--}}
                 <button class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _btn_1pic1_24 css-sghohy-MuiButtonBase-root-MuiButton-root"
                         tabindex="0" type="submit">Login<span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
                 </button>

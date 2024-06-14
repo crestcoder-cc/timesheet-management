@@ -56,13 +56,13 @@
                                            placeholder="Email">
                                 </div>
                             </div>
-                            <div class="col-lg-6 mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" id="password" name="password"
-                                           placeholder="Password">
-                                </div>
-                            </div>
+{{--                            <div class="col-lg-6 mb-3">--}}
+{{--                                <label for="password" class="form-label">Password</label>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input type="password" class="form-control" id="password" name="password"--}}
+{{--                                           placeholder="Password">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 {{--                            <div class="col-lg-6 mb-3">--}}
 {{--                                <label for="address" class="form-label">Address</label>--}}

@@ -6,8 +6,10 @@ use App\Helpers\AdminDataTableBadgeHelper;
 use App\Helpers\AdminDataTableButtonHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyStoreRequest;
+use App\Mail\CompanyPasswordMail;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
 class CompanyController extends Controller
@@ -46,6 +48,7 @@ class CompanyController extends Controller
 
     public function store(CompanyStoreRequest $request)
     {
+
         if ((int)$request['edit_value'] === 0) {
             $company = new Company();
             do {
@@ -56,9 +59,18 @@ class CompanyController extends Controller
             $company->person_name = $request->person_name;
             $company->contact_no = $request->contact_no;
             $company->email = $request->email;
-            $company->password = \Hash::make($request->password);
+            $company->password = \Hash::make($uniqueId);
             $company->save();
-
+            $array = [
+                'name' => $company->name,
+                'mail_title' => 'Set Password',
+                'main_title_text' => 'Set Your Password By Admin',
+                'subject' => 'Set Password',
+                'login_url' => url('/company/login'),
+                'email' => $company->email,
+                'password' => $uniqueId
+            ];
+            Mail::to($request->input('email'))->send(new CompanyPasswordMail($array));
             return response()->json([
                 'message' => 'Company added successfully',
             ]);
@@ -69,9 +81,6 @@ class CompanyController extends Controller
             $company->person_name = $request->person_name;
             $company->contact_no = $request->contact_no;
             $company->email = $request->email;
-            if ($request->password) {
-                $company->password = \Hash::make($request->password);
-            }
             $company->save();
 
             return response()->json([

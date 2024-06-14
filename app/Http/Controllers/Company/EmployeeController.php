@@ -6,9 +6,11 @@ use App\Helpers\AdminDataTableBadgeHelper;
 use App\Helpers\AdminDataTableButtonHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\EmployeeStoreRequest;
+use App\Mail\EmployeePasswordMail;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
 
 class EmployeeController extends Controller
@@ -64,7 +66,16 @@ class EmployeeController extends Controller
             $employee->address = $request->address;
             $employee->password = \Hash::make($request->password);
             $employee->save();
-
+//            $array = [
+//                'name' => $employee->first_name .' '. $employee->last_name,
+//                'mail_title' => 'Set Password',
+//                'main_title_text' => 'Set Your Password By Company',
+//                'subject' => 'Set Password',
+////                'login_url' => url('/company/login'),
+//                'email' => $employee->email,
+//                'password' => $employee->password
+//            ];
+//            Mail::to($request->input('email'))->send(new EmployeePasswordMail($array));
             return response()->json([
                 'message' => 'Employee added successfully',
             ]);

@@ -5,18 +5,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\ImageUploadHelper;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\BankStoreRequest;
 use App\Http\Requests\Admin\ContactInfoStoreRequest;
 use App\Http\Requests\Admin\GeneralSettingStoreRequest;
 use App\Http\Requests\Admin\EmailSettingStoreRequest;
-use App\Http\Requests\Admin\AppSettingStoreRequest;
 use App\Http\Requests\Admin\HolidayStoreRequest;
 use App\Http\Requests\Admin\SocialMediaStoreRequest;
 use App\Models\Holiday;
 use App\Models\Setting;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {

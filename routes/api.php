@@ -21,19 +21,6 @@ use App\Http\Controllers\Api\DriverController;
 //    return $request->user();
 //});
 
-Route::post('driver/login',[LoginController::class,'login']);
-Route::post('trip-request',[TripRequestController::class,'trip_request']);
-Route::get('trip-request-details/{id}',[TripRequestController::class,'request_details'])->name('trip-request-details');
-
-Route::middleware('auth:sanctum')->group(function(){
-    Route::get('driver-profile',[DriverController::class,'profile']);
-    Route::post('driver-checkin',[DriverController::class,'driver_checkin']);
-    Route::get('check_out',[DriverController::class,'check_out']);
-    Route::post('change-status',[DriverController::class,'change_status']);
-    Route::get('get-trip-driver',[DriverController::class,'get_trip_driver']);
-    Route::get('driver-queue',[DriverController::class,'driver_queue']);
-    Route::get('trip-complete',[DriverController::class,'trip_complete']);
-});
 
 
 

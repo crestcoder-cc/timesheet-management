@@ -38,22 +38,13 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::post('updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
     Route::get('change-panel-mode/{id}', [DashboardController::class, 'changePanelMode'])->name('change-panel-mode');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::get('/change-password', [PasswordController::class, 'index'])->name('change-password');
     Route::post('update-password', [PasswordController::class, 'updatePassword'])->name('update-password');
 
-    Route::get('/company/status/{id}/{status}', [TurfController::class, 'changeStatus'])->name('change-status-event');
-    Route::get('get-company', [TurfController::class, 'getDatatable'])->name('admin.get-company');
-
-    Route::post('approve-company', [TurfController::class, 'approve'])->name('approve-company');
-    Route::post('reject-company', [TurfController::class, 'reject'])->name('reject-company');
     Route::resources([
-        'company' => TurfController::class,
         'company' => CompanyController::class,
         'employee' => EmployeeController::class,
-        'booking' => BookingController::class,
     ]);
-    Route::get('get-player', [PlayerController::class, 'getDatatable'])->name('get-player');
 
     Route::get('get-company', [CompanyController::class, 'getDatatable'])->name('get-company');
     Route::get('/company/status/{id}/{status}', [CompanyController::class, 'changeStatus'])->name('change-status-event');
@@ -67,9 +58,4 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::post('contact-info-store', [SettingController::class, 'contactInfoStore'])->name('contact-info-store');
     Route::post('social-media-store', [SettingController::class, 'socialMediaStore'])->name('social-media-store');
     Route::post('holiday-date-store', [SettingController::class, 'HolidayStore'])->name('holiday-date-store');
-
-    Route::get('get-states', [TurfController::class, 'getState'])->name('get-states');
-    Route::get('get-cities/{id}', [TurfController::class, 'getCity'])->name('get-cities');
-    Route::post('get-pincode', [TurfController::class, 'getPincode'])->name('get-pincode');
-    Route::get('get-booking', [BookingController::class, 'getDatatable'])->name('admin.get-booking');
 });

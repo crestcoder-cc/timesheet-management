@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function loginCheck(AdminLoginRequest $request): JsonResponse
     {
-        if (Auth::guard('company')->attempt(['email' => $request['email'],  'password' => $request['password']])) {
+        if (Auth::guard('company')->attempt(['email' => $request['email'], 'password' => $request['password']])) {
             if (Auth::guard('company')->user()->status === 'active') {
                 return response()->json([
                     'message' => 'Login Successfully',

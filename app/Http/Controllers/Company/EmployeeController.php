@@ -20,7 +20,7 @@ class EmployeeController extends Controller
 
     public function getDatatable(Request $request)
     {
-        $employee = Employee::where('company_id',Auth::guard('company')->user()->id);
+        $employee = Employee::where('company_id', Auth::guard('company')->user()->id);
         return Datatables::of($employee)
             ->addColumn('action', function ($employee) {
                 $actions['edit'] = route('company.employee.edit', [$employee->id]);

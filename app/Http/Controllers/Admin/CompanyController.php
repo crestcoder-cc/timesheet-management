@@ -69,7 +69,7 @@ class CompanyController extends Controller
             $company->person_name = $request->person_name;
             $company->contact_no = $request->contact_no;
             $company->email = $request->email;
-            if($request->password){
+            if ($request->password) {
                 $company->password = \Hash::make($request->password);
             }
             $company->save();

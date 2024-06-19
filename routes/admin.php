@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('get-company', [CompanyController::class, 'getDatatable'])->name('get-company');
     Route::get('/company/status/{id}/{status}', [CompanyController::class, 'changeStatus'])->name('change-status-event');
 
+    Route::get('get-company-wise-employee/{id}', [CompanyController::class, 'getCompanyWiseEmployee'])->name('get-company-wise-employee');
     Route::get('get-employee', [EmployeeController::class, 'getDatatable'])->name('get-employee');
     Route::get('/employee/status/{id}/{status}', [EmployeeController::class, 'changeStatus'])->name('change-status-event');
 

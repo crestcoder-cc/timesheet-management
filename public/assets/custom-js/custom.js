@@ -254,3 +254,16 @@ if($(".dropify").length>0){
     $(".dropify").dropify()
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    var inputs = document.querySelectorAll('.floating-input');
+    inputs.forEach(function (input) {
+        input.addEventListener('focus', function () {
+            this.classList.add('has-value');
+        });
+        input.addEventListener('blur', function () {
+            if (this.value === '') {
+                this.classList.remove('has-value');
+            }
+        });
+    });
+});

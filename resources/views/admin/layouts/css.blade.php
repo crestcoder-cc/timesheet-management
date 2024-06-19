@@ -6,6 +6,47 @@
 <!-- Layout config Js -->
 <script src="{{asset('assets/js/layout.js')}}"></script>
 <!-- Bootstrap Css -->
+<style>
+    .floating-label-group {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .floating-input {
+        font-size: 16px;
+        padding: 10px 10px 10px 5px;
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #757575;
+        background: none; /* Remove background color */
+        appearance: none;
+    }
+
+    .floating-input:focus {
+        outline: none;
+        /*border-bottom: 2px solid #5264AE;*/
+    }
+
+    .floating-label {
+        color: #999;
+        font-size: 15px;
+        font-weight: normal;
+        position: absolute;
+        pointer-events: none;
+        left: 5px;
+        top: 10px;
+        transition: 0.2s ease all;
+    }
+
+    .floating-input:focus ~ .floating-label,
+    .floating-input:not(:placeholder-shown) ~ .floating-label {
+        top: -25px;
+        font-size: 16px;
+        color: #000000;
+    }
+
+</style>
 <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
 <!-- Icons Css -->
 <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -19,5 +60,10 @@
       integrity="sha512-EZSUkJWTjzDlspOoPSpUFR0o0Xy7jdzW//6qhUkoZ9c4StFkVsp9fbbd0O06p9ELS3H486m4wmrCELjza4JEog=="
       crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <link rel="stylesheet" href="{{ asset('assets/custom-css/custom.css') }}?v=8">
-
+<style>
+    .btn-blue{
+        background-color: #2E99A6;
+        color: #FFFFFF;
+    }
+</style>
 @yield('css')

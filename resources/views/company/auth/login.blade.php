@@ -440,7 +440,48 @@
                 }
             }
         }
+        .floating-label-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
 
+        .floating-input {
+            font-size: 16px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid #757575;
+            background: none; /* Remove background color */
+            appearance: none;
+        }
+
+        .floating-input:focus {
+            outline: none;
+            /*border-bottom: 2px solid #5264AE;*/
+        }
+
+        .floating-label {
+            color: #999;
+            font-size: 15px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            transition: 0.2s ease all;
+        }
+
+        .floating-input:focus ~ .floating-label,
+        .floating-input:not(:placeholder-shown) ~ .floating-label {
+            top: -25px;
+            font-size: 16px;
+            color: #000000;
+        }
+        .btn-blue{
+            background-color: #2E99A6;
+            color: #FFFFFF;
+        }
     </style>
     <script src="{{asset('assets/js/layout.js')}}"></script>
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
@@ -453,29 +494,24 @@
     <div class="_wrapper_5lqi5_10">
         <div class="_left_5lqi5_17"><img src="{{asset('assets/logo/Afotracx Color logo - no background.png')}}"></div>
         <div class="_right_1pic1_1">
-            <h2 style="width: 45%;">Log in</h2>
+            <h2 style="width: 45%;" class="mb-5">Log in</h2>
             <form method="POST" data-parsley-validate="" id="addEditForm" role="form">
                 @csrf
 
-                <div class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root">
-{{--                    <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"--}}
-{{--                           data-shrink="false" for="email">Email</label>--}}
+                <div class="form-group floating-label-group MuiFormControl-root css-1nrlq1o-MuiFormControl-root">
                     <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root">
-                        <input aria-invalid="false" id="email" type="text" name="email" placeholder="Email"
-                               class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input" value="">
-                        <fieldset aria-hidden="true" class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
-                            <legend class="css-yjsfm1"><span>Email</span></legend>
-                        </fieldset>
+                        <input aria-invalid="false" id="email" type="text" name="email" placeholder=""
+                               class="form-control floating-input MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input" value="">
+                        <label class="floating-label" for="email">Email</label>
                     </div>
                     <p class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
                        style="font-size: 10px;"></p>
                 </div>
-                <div class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root">
-{{--                    <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"--}}
-{{--                           data-shrink="false" for="password">Password</label>--}}
-                    <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root">
-                        <input aria-invalid="false" id="password" type="password" name="password" placeholder="Password"
-                               class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input" value="">
+                <div class="form-group floating-label-group MuiFormControl-root css-1nrlq1o-MuiFormControl-root">
+
+                    <div class=" MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root">
+                        <input aria-invalid="false" id="password" type="password" name="password" placeholder=""
+                               class="form-control floating-input MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input" value="">
                         <div class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root">
                             <button id="togglePassword" class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                                     tabindex="0" type="button">
@@ -486,15 +522,14 @@
                                 <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
                             </button>
                         </div>
-                        <fieldset aria-hidden="true" class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
-                            <legend class="css-yjsfm1"><span>Password</span></legend>
-                        </fieldset>
+                        <label class="floating-label"
+                               data-shrink="false" for="password">Password</label>
                     </div>
                     <p class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
                        style="font-size: 10px;"></p>
                 </div>
 {{--                <a class="_fpassword_1pic1_16" href="/forgotpassword">forgot password?</a>--}}
-                <button class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _btn_1pic1_24 css-sghohy-MuiButtonBase-root-MuiButton-root"
+                <button class="btn-blue MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary _btn_1pic1_24 css-sghohy-MuiButtonBase-root-MuiButton-root"
                         tabindex="0" type="submit">Login<span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
                 </button>
             </form>

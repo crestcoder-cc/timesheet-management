@@ -30,7 +30,7 @@
                     <div class="col-md-4">
                         <h4>Personal info</h4>
                         <p><strong>Company Name:</strong> {{$company->name}}</p>
-                        <p><strong>Person Name:</strong> {{$company->personname}}</p>
+                        <p><strong>Person Name:</strong> {{$company->person_name}}</p>
 {{--                        <p><strong>Date of Birth:</strong> {{$company->date_of_birth}}</p>--}}
 {{--                        <p><strong>Gender:</strong> {{$company->gender}}</p>--}}
                     </div>
@@ -79,7 +79,8 @@
 
 @section('custom-script')
     <script>
-        let datatable_url = '/get-employee'
+        let company_id = '{{$company->id}}'
+        let datatable_url = `/get-company-wise-employee/${company_id}`;
         let redirect_url = '/employee'
         let form_url = '/employee'
         const sweetalert_delete_title = 'Delete Employee ?'

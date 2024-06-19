@@ -1,6 +1,6 @@
 .form-control:focus {
-    border-color: #9c27b0 !important;
-    background-color: #dd83bc70 !important
+    border-color: #0071B2 !important;
+    background-color: #FFFFFF !important
 }
 
 .choices[data-type*=select-one] .choices__input {
@@ -109,3 +109,4 @@ tr.shown td.details-control {
 .dropify-message .file-icon p{
     font-size: 20px!important;
 }
+

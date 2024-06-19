@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CompanyStoreRequest;
 use App\Mail\CompanyPasswordMail;
 use App\Models\Company;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
@@ -119,5 +120,27 @@ class CompanyController extends Controller
     {
         $company = Company::find($id);
         return view('admin.company.show', compact('company'));
+    }
+
+    public function getCompanyWiseEmployee(Request $request,$id)
+    {
+        $employee = Employee::where('company_id',$id);
+        return Datatables::of($employee)
+            ->addColumn('action', function ($employee) {
+//                $actions['edit'] = route('admin.employee.edit', [$employee->id]);
+                $actions['delete'] = $employee->id;
+                $actions['status'] = $employee->status;
+                $actions['view-page'] = route('admin.employee.show', [$employee->id]);
+                $array = [
+                    'id' => $employee->id,
+                    'actions' => $actions
+                ];
+                return AdminDataTableButtonHelper::actionButtonDropdown2($array);
+            })
+            ->addColumn('status', function ($employee) {
+                return AdminDataTableBadgeHelper::statusBadge($employee);
+            })
+            ->rawColumns(['action', 'status'])
+            ->make(true);
     }
 }

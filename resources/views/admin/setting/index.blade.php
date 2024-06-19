@@ -89,9 +89,9 @@
                                 @endif
                             @endforeach
                             <div class="d-flex justify-content-end mt-3">
-                                <button class="btn btn-primary me-3" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-sm me-3" type="submit">Submit</button>
                                 <a href="#">
-                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-blue btn-sm" type="button">Cancel</button>
                                 </a>
                             </div>
                         </form>
@@ -156,9 +156,9 @@
                                 @endif
                             @endforeach
                             <div class="d-flex justify-content-end mt-3">
-                                <button class="btn btn-primary me-3" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-sm me-3" type="submit">Submit</button>
                                 <a href="#">
-                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-blue btn-sm" type="button">Cancel</button>
                                 </a>
                             </div>
                         </form>
@@ -230,9 +230,9 @@
                                 @endif
                             @endforeach
                             <div class="d-flex justify-content-end mt-3">
-                                <button class="btn btn-primary me-3" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-sm me-3" type="submit">Submit</button>
                                 <a href="#">
-                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-blue btn-sm" type="button">Cancel</button>
                                 </a>
                             </div>
                         </form>
@@ -267,9 +267,9 @@
                                 @endif
                             @endforeach
                             <div class="d-flex justify-content-end mt-3">
-                                <button class="btn btn-primary me-3" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-sm me-3" type="submit">Submit</button>
                                 <a href="#">
-                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-blue btn-sm" type="button">Cancel</button>
                                 </a>
                             </div>
                         </form>
@@ -297,9 +297,9 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end mt-3">
-                                <button class="btn btn-primary me-3" type="submit">Submit</button>
+                                <button class="btn btn-primary btn-sm me-3" type="submit">Submit</button>
                                 <a href="#">
-                                    <button class="btn btn-secondary" type="button">Cancel</button>
+                                    <button class="btn btn-blue btn-sm" type="button">Cancel</button>
                                 </a>
                             </div>
                         </form>

@@ -27,7 +27,7 @@ class EmployeeStoreRequest extends FormRequest
             'gender' => 'required',
             'department' => 'required',
             'address' => 'required',
-            'password' =>  'required_if:edit_value,0',
+//            'password' =>  'required_if:edit_value,0',
             'email' => [
                 'required',
                 Rule::unique('employees', 'email')

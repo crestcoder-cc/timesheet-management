@@ -64,18 +64,18 @@ class EmployeeController extends Controller
             $employee->gender = $request->gender;
             $employee->department = $request->department;
             $employee->address = $request->address;
-            $employee->password = \Hash::make($request->password);
+            $employee->password = \Hash::make($uniqueId);
             $employee->save();
-//            $array = [
-//                'name' => $employee->first_name .' '. $employee->last_name,
-//                'mail_title' => 'Set Password',
-//                'main_title_text' => 'Set Your Password By Company',
-//                'subject' => 'Set Password',
-////                'login_url' => url('/company/login'),
-//                'email' => $employee->email,
-//                'password' => $employee->password
-//            ];
-//            Mail::to($request->input('email'))->send(new EmployeePasswordMail($array));
+            $array = [
+                'name' => $employee->first_name .' '. $employee->last_name,
+                'mail_title' => 'Set Password',
+                'main_title_text' => 'Set Your Password By Company',
+                'subject' => 'Set Password',
+                'login_url' => url('/login'),
+                'email' => $employee->email,
+                'password' => $uniqueId
+            ];
+            Mail::to($request->input('email'))->send(new EmployeePasswordMail($array));
             return response()->json([
                 'message' => 'Employee added successfully',
             ]);

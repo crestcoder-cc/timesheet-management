@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $companies_count = Company::whereNull('deleted_at')->count();
         $employee_count = Employee::whereNull('deleted_at')->count();
         $holiday_count = Holiday::count();
-        $holidays = Holiday::pluck('date')->toArray();
+        $holidays = Holiday::all();
         return view('admin.dashboard.dashboard', [
             'companies_count' => $companies_count,
             'employee_count' => $employee_count,

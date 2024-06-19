@@ -277,30 +277,84 @@
 
                     <div class="tab-pane fade" id="holiday_setting" role="tabpanel"
                          aria-labelledby="holiday-setting-tab">
-                        <form id="holiday_form" class="form" action="#">
+                        <form id="holiday_form" class="form" method="POST">
+                            @csrf
                             <div class="row mb-3">
                                 <div class="col-md-9 offset-md-3">
                                     <h2>Holiday Setting</h2>
                                 </div>
                             </div>
+                            @if(count($holidays) > 0)
+                                @php
+                                    $i = 0;
+                                @endphp
+                                <div id="holiday_fields">
+                                    {{-- Existing holiday fields --}}
+                                    @foreach($holidays as $index => $holiday)
+                                        <div class="holiday-row row mb-3" id="holiday_row_{{$index + 1}}">
+                                            <div class="col-md-3 text-md-end">
+                                                <label for="holiday_title_{{$index + 1}}" class="form-label"><span
+                                                        class="required">Holiday Title</span></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control"
+                                                       id="holiday_title_{{$index + 1}}"
+                                                       name="holiday_title[{{$index + 1}}]" value="{{$holiday->title}}"
+                                                       placeholder="Holiday Title">
+                                            </div>
+                                            <div class="col-md-1 d-flex align-items-center">
+                                                @if($index === 0)
+                                                    <button type="button" class="btn btn-success btn-sm ms-2 add_field">
+                                                        +
+                                                    </button>
+                                                @else
+                                                    <button type="button"
+                                                            class="btn btn-danger btn-sm ms-2 remove_field">-
+                                                    </button>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-3 text-md-end mt-3">
+                                                <label for="holiday_date_{{$index + 1}}" class="form-label"><span
+                                                        class="required">Holiday Date</span></label>
+                                            </div>
+                                            <div class="col-md-9 d-flex mt-3">
+                                                <input type="date" id="holiday_date_{{$index + 1}}"
+                                                       value="{{$holiday->date}}" name="holiday_date[{{$index + 1}}]"
+                                                       class="form-control" placeholder="Select date">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
 
-                            <div class="row mb-3">
-                                <div class="col-md-3 text-md-end">
-                                    <label for="holiday"
-                                           class="form-label"><span
-                                            class="required"> Holiday Date</span>
-                                    </label>
+                            @else
+                                <div id="holiday_fields">
+                                    <div class="holiday-row row mb-3" id="holiday_row_1">
+                                        <div class="col-md-3 text-md-end">
+                                            <label for="holiday_title_1" class="form-label"><span class="required">Holiday Title</span></label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="holiday_title_1"
+                                                   name="holiday_title[1]" placeholder="Holiday Title">
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-center">
+                                            <button type="button" class="btn btn-success btn-sm ms-2 add_field">+
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 text-md-end mt-3">
+                                            <label for="holiday_date_1" class="form-label"><span
+                                                    class="required">Holiday Date</span></label>
+                                        </div>
+                                        <div class="col-md-9 d-flex mt-3">
+                                            <input type="date" id="holiday_date_1"
+                                                 name="holiday_date[1]"
+                                                   class="form-control" placeholder="Select date">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <input type="text" id="holiday-picker" class="form-control" placeholder="Select multiple dates">
-                                    <div id="holidays-inputs"></div>
-                                </div>
-                            </div>
+                            @endif
                             <div class="d-flex justify-content-end mt-3">
                                 <button class="btn btn-primary btn-sm me-3" type="submit">Submit</button>
-                                <a href="#">
-                                    <button class="btn btn-blue btn-sm" type="button">Cancel</button>
-                                </a>
+                                <a href="#" class="btn btn-secondary btn-sm">Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -318,6 +372,7 @@
         var holiday_form_url = '/holiday-date-store';
         var redirect_url = '/setting';
     </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
@@ -325,28 +380,54 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
         });
-        document.addEventListener('DOMContentLoaded', function() {
-            const existingDates = @json($holidays);
 
-            flatpickr("#holiday-picker", {
-                mode: "multiple",
-                dateFormat: "Y-m-d",
-                defaultDate: existingDates,
-                onChange: function(selectedDates, dateStr, instance) {
-                    const holidaysInputsDiv = document.getElementById('holidays-inputs');
-                    holidaysInputsDiv.innerHTML = ''; // Clear previous inputs
-                    selectedDates.forEach(date => {
-                        const input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = 'holidays[]';
-                        input.value = instance.formatDate(date, 'Y-m-d');
-                        holidaysInputsDiv.appendChild(input);
-                    });
-                }
+        $(document).ready(function () {
+            var i = {{ count($holidays) > 0 ? count($holidays) : 0 }}; // Initialize i with count of existing holidays
+
+            $('.add_field').click(function () {
+                i++;
+
+                var newHolidayField = `
+<div id="holiday_fields">
+                                    <div class="holiday-row row mb-3" id="holiday_row_${i}">
+                                        <div class="col-md-3 text-md-end">
+                                            <label for="holiday_title_${i}" class="form-label"><span class="required">Holiday Title</span></label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" id="holiday_title_${i}"
+                                                   name="holiday_title[${i}]" placeholder="Holiday Title">
+                                        </div>
+                                        <div class="col-md-1 d-flex align-items-center">
+                                            <button type="button" class="btn btn-danger btn-sm ms-2 remove_field">-
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 text-md-end mt-3">
+                                            <label for="holiday_date_${i}" class="form-label"><span
+                                                    class="required">Holiday Date</span></label>
+                                        </div>
+                                        <div class="col-md-9 d-flex mt-3">
+                                            <input type="date" id="holiday_date_${i}"
+                                                 name="holiday_date[${i}]"
+                                                   class="form-control" placeholder="Select date">
+                                        </div>
+                                    </div>
+                                </div>
+
+        `;
+
+                // Append new holiday fields after the last existing holiday row
+                $('#holiday_fields').children('.holiday-row').last().after(newHolidayField);
             });
 
-            // Trigger the onChange to populate the initial inputs
-            document.querySelector("#holiday-picker")._flatpickr.config.onChange();
+            $(document).on('click', '.remove_field', function () {
+                $(this).closest('.row').next('.row').remove(); // Remove date field row
+                $(this).closest('.row').remove(); // Remove title field row
+            });
+
+            // Initialize date picker
+            $(document).on('focus', '.dob-date-picker', function () {
+                $(this).datepicker();
+            });
         });
     </script>
     <script src="{{URL::asset('assets/custom-js/admin/setting.js')}}?v={{ time() }}"></script>

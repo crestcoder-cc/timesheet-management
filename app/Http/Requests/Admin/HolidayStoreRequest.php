@@ -18,8 +18,8 @@ class HolidayStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'holidays' => 'required|array',
-            'holidays.*' => 'date',
+            'holiday_title.*' => 'required',
+            'holiday_date.*' => 'required',
         ];
     }
 

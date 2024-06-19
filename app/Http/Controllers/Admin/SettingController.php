@@ -20,7 +20,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::select(['setting_key', 'setting_value'])->get();
-        $holidays = Holiday::pluck('date')->toArray();
+        $holidays = Holiday::all();
         return view('admin.setting.index', [
             'settings' => $settings,
             'holidays' => $holidays,
@@ -97,8 +97,11 @@ class SettingController extends Controller
     public function HolidayStore(HolidayStoreRequest $request)
     {
         Holiday::truncate();
-        foreach ($request->holidays as $holidayDate) {
-            Holiday::create(['date' => $holidayDate]);
+        foreach ($request->holiday_title as $key=>$title){
+            Holiday::create([
+                'title' => $title,
+                'date' => $request->holiday_date[$key],
+            ]);
         }
 
         return response()->json([

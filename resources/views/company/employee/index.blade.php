@@ -1,37 +1,52 @@
 @extends('company.layouts.master')
-@section('title','Employees')
-@section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Employees</h4>
-            </div>
+@section('title')
+    Employee
+@endsection
+@section('header')
+    <div class="col-md-6">
+        <div class="breadcrumb">
+            <span>Dashboards</span>
+            <span>/</span>
+            <span>Total Employees</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header align-items-center d-flex">
-                    <h5 class="card-title mb-0 flex-grow-1">Employees List</h5>
-                    <div class="flex-shrink-0">
-                        <div class="form-check form-switch form-switch-right form-switch-md">
-                            <a href="{{ route('company.employee.create') }}"
-                               class="btn btn-primary btn-sm">Add New</a>
-                        </div>
+@endsection
+@section('content')
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {{--                <div class="company-info">--}}
+                {{--                    <div class="comapny-titles">Company Information</div>--}}
+                {{--                    <div class="comapny-det">--}}
+                {{--                        <div class="c-info">--}}
+                {{--                            <span>Company</span>--}}
+                {{--                            <p>Grandin & Co.</p>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="c-info">--}}
+                {{--                            <span>Contact No.</span>--}}
+                {{--                            <p>+27 98250 98250</p>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="c-info">--}}
+                {{--                            <span>Contact Email</span>--}}
+                {{--                            <p>demon@grandin.com</p>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                <div class="theme-table">
+                    <div class="tab-heading mb-5">
+                        <h3>Total Employees</h3>
+                        <a href="{{route('company.employee.create')}}" class="btn btn-primary">+ Add Employee</a>
                     </div>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                           id="basic-1" style="width:100%">
+                    <table id="basic-1"  class="table table-striped nowrap" style="width:100%">
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Mobile No</th>
                             <th>Status</th>
                             <th>Action</th>
+
                         </tr>
                         </thead>
                     </table>
@@ -50,7 +65,6 @@
 
         $.extend(true, $.fn.dataTable.defaults, {
             columns: [
-                {data: 'id', name: 'id'},
                 {data: 'first_name', name: 'first_name'},
                 {data: 'last_name', name: 'last_name'},
                 {data: 'email', name: 'email'},
@@ -61,5 +75,5 @@
             order: [0, 'desc']
         })
     </script>
-    <script src="{{ asset('assets/custom-js/custom/datatable.js') }}?v={{time()}}"></script>
+    <script src="{{ asset('assets/admin/custom/datatable.js') }}?v={{time()}}"></script>
 @endsection

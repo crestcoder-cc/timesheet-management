@@ -3,16 +3,10 @@
 use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PasswordController;
-use App\Http\Controllers\Admin\PlayerController;
 use App\Http\Controllers\Admin\ProfileController;
-use App\Http\Controllers\Admin\DriverController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\TripController;
-use App\Http\Controllers\Admin\TurfController;
-use App\Http\Controllers\Admin\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,7 +46,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('get-company-wise-employee/{id}', [CompanyController::class, 'getCompanyWiseEmployee'])->name('get-company-wise-employee');
     Route::get('get-employee', [EmployeeController::class, 'getDatatable'])->name('get-employee');
     Route::get('/employee/status/{id}/{status}', [EmployeeController::class, 'changeStatus'])->name('change-status-event');
-
+    Route::get('/get-employee-task/{id}', [EmployeeController::class, 'employeeTask'])->name('get-employee-task');
     Route::resource('setting', SettingController::class);
     Route::post('general-setting-store', [SettingController::class, 'generalSettingStore'])->name('general-setting-store');
     Route::post('email-setting-store', [SettingController::class, 'emailSettingStore'])->name('email-setting-store');

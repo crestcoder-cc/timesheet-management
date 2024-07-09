@@ -3,8 +3,6 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\File;
-use Intervention\Image\Facades\Image;
-use SpacesAPI\Spaces;
 
 class ImageUploadHelper
 {

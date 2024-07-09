@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => trans('messages.profile_updated_successfully')
+            'message' => 'Profile Update Successfully'
         ]);
     }
 }

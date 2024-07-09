@@ -27,7 +27,6 @@ class ContactInfoStoreRequest extends FormRequest
             'setting_key.COUNTRY' => 'required',
             'setting_key.STATE' => 'required',
             'setting_key.CITY' => 'required',
-            'setting_key.ZIPCODE' => 'required',
         ];
     }
 

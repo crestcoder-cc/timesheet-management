@@ -19,12 +19,13 @@ class ChangeProfileRequest extends FormRequest
     {
         return [
             'edit_value' => 'required',
-            'name'       => 'required',
-            'email'       => 'required',
+            'name' => 'required',
+            'person_name' => 'required',
+            'email' => 'required',
         ];
     }
 
-    public function failedValidation( Validator $validator )
+    public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
             'message' => $validator->errors()->first()

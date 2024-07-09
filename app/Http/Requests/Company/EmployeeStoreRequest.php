@@ -25,6 +25,7 @@ class EmployeeStoreRequest extends FormRequest
             'mobile_no' => 'required',
             'date_of_birth' => 'required',
             'gender' => 'required',
+            'location' => 'required',
             'department' => 'required',
             'address' => 'required',
 //            'password' =>  'required_if:edit_value,0',

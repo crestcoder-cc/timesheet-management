@@ -27,11 +27,4 @@ class Handler extends ExceptionHandler
             //
         });
     }
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof \Illuminate\Auth\AuthenticationException && \Request::is('api/*')) {
-            return response()->json(['message' => 'Token invalid'], 401);
-        }
-        return parent::render($request, $exception);
-    }
 }

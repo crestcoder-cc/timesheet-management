@@ -7,6 +7,8 @@ use App\Helpers\AdminDataTableButtonHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\EmployeeStoreRequest;
 use App\Models\Employee;
+use App\Models\EmployeeTask;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -30,10 +32,38 @@ class EmployeeController extends Controller
                     'id' => $employee->id,
                     'actions' => $actions
                 ];
-                return AdminDataTableButtonHelper::actionButtonDropdown2($array);
+                return AdminDataTableButtonHelper::datatableButton($array);
             })
             ->addColumn('status', function ($employee) {
                 return AdminDataTableBadgeHelper::statusBadge($employee);
+            })
+            ->rawColumns(['action', 'status'])
+            ->make(true);
+    }
+    public function employeeTask(Request $request,$id)
+    {
+        $employee = EmployeeTask::where('employee_id', $id);
+        if ($request->has('from_date') && $request->has('to_date')) {
+            $start_date = Carbon::parse($request->from_date)->startOfDay();
+            $end_date = Carbon::parse($request->to_date)->endOfDay();
+            $employee->whereBetween('date', [$start_date, $end_date]);
+        }
+        return Datatables::of($employee)
+
+            ->addColumn('status', function ($employee) {
+                return AdminDataTableBadgeHelper::taskStatusBadge($employee);
+            })
+            ->addColumn('task', function ($employee) {
+                return str_replace('_',' ',ucfirst($employee->task));
+            })
+            ->addColumn('date', function ($employee) {
+                return Carbon::parse($employee->date)->format('d-m-Y');
+            })
+            ->addColumn('start_time', function ($employee) {
+                return Carbon::parse($employee->start_time)->format('H:i A');
+            })
+            ->addColumn('end_time', function ($employee) {
+                return Carbon::parse($employee->end_time)->format('H:i A');
             })
             ->rawColumns(['action', 'status'])
             ->make(true);

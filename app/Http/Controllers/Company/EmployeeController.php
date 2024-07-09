@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\EmployeeStoreRequest;
 use App\Mail\EmployeePasswordMail;
 use App\Models\Employee;
+use App\Models\EmployeeTask;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +19,10 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        return view('company.employee.index');
+        $employees = Employee::where('company_id', Auth::guard('company')->user()->id)->get();
+        return view('company.employee.index',[
+            'employees' => $employees
+        ]);
     }
 
     public function getDatatable(Request $request)
@@ -27,13 +32,12 @@ class EmployeeController extends Controller
             ->addColumn('action', function ($employee) {
                 $actions['edit'] = route('company.employee.edit', [$employee->id]);
                 $actions['delete'] = $employee->id;
-                $actions['status'] = $employee->status;
                 $actions['view-page'] = route('company.employee.show', [$employee->id]);
                 $array = [
                     'id' => $employee->id,
                     'actions' => $actions
                 ];
-                return AdminDataTableButtonHelper::actionButtonDropdown2($array);
+                return AdminDataTableButtonHelper::datatableButton($array);
             })
             ->addColumn('status', function ($employee) {
                 return AdminDataTableBadgeHelper::statusBadge($employee);
@@ -41,6 +45,37 @@ class EmployeeController extends Controller
             ->rawColumns(['action', 'status'])
             ->make(true);
     }
+
+    public function employeeTask(Request $request,$id)
+    {
+        $employee = EmployeeTask::where('employee_id', $id);
+        if ($request->has('from_date') && $request->has('to_date')) {
+            $start_date = Carbon::parse($request->from_date)->startOfDay();
+            $end_date = Carbon::parse($request->to_date)->endOfDay();
+            $employee->whereBetween('date', [$start_date, $end_date]);
+        }
+        return Datatables::of($employee)
+
+            ->addColumn('status', function ($employee) {
+                return AdminDataTableBadgeHelper::taskStatusBadge($employee);
+            })
+            ->addColumn('task', function ($employee) {
+                return str_replace('_',' ',ucfirst($employee->task));
+            })
+            ->addColumn('date', function ($employee) {
+                return Carbon::parse($employee->date)->format('d-m-Y');
+            })
+            ->addColumn('start_time', function ($employee) {
+                return Carbon::parse($employee->start_time)->format('H:i A');
+            })
+            ->addColumn('end_time', function ($employee) {
+                return Carbon::parse($employee->end_time)->format('H:i A');
+            })
+            ->rawColumns(['action', 'status'])
+            ->make(true);
+    }
+
+
 
     public function create()
     {
@@ -64,10 +99,11 @@ class EmployeeController extends Controller
             $employee->gender = $request->gender;
             $employee->department = $request->department;
             $employee->address = $request->address;
+            $employee->location = $request->location;
             $employee->password = \Hash::make($uniqueId);
             $employee->save();
             $array = [
-                'name' => $employee->first_name .' '. $employee->last_name,
+                'name' => $employee->first_name . ' ' . $employee->last_name,
                 'mail_title' => 'Set Password',
                 'main_title_text' => 'Set Your Password By Company',
                 'subject' => 'Set Password',
@@ -91,6 +127,7 @@ class EmployeeController extends Controller
             $employee->gender = $request->gender;
             $employee->department = $request->department;
             $employee->address = $request->address;
+            $employee->location = $request->location;
             if ($request->password) {
                 $employee->password = \Hash::make($request->password);
             }
@@ -132,5 +169,16 @@ class EmployeeController extends Controller
     {
         $employee = Employee::find($id);
         return view('company.employee.show', compact('employee'));
+    }
+
+    public function taskReject(Request $request)
+    {
+        $employee_task = EmployeeTask::find($request->task_id);
+        $employee_task->status = 'reject';
+        $employee_task->reject_reason = $request->reject_reason;
+        $employee_task->save();
+        return response()->json([
+            'message' => 'Employee Task Reject successfully',
+        ]);
     }
 }

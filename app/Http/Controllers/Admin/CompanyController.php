@@ -33,7 +33,7 @@ class CompanyController extends Controller
                     'id' => $company->id,
                     'actions' => $actions
                 ];
-                return AdminDataTableButtonHelper::actionButtonDropdown2($array);
+                return AdminDataTableButtonHelper::datatableButton($array);
             })
             ->addColumn('status', function ($company) {
                 return AdminDataTableBadgeHelper::statusBadge($company);
@@ -60,6 +60,7 @@ class CompanyController extends Controller
             $company->person_name = $request->person_name;
             $company->contact_no = $request->contact_no;
             $company->email = $request->email;
+            $company->address = $request->address;
             $company->password = \Hash::make($uniqueId);
             $company->save();
             $array = [
@@ -82,6 +83,7 @@ class CompanyController extends Controller
             $company->person_name = $request->person_name;
             $company->contact_no = $request->contact_no;
             $company->email = $request->email;
+            $company->address = $request->address;
             $company->save();
 
             return response()->json([
@@ -135,7 +137,7 @@ class CompanyController extends Controller
                     'id' => $employee->id,
                     'actions' => $actions
                 ];
-                return AdminDataTableButtonHelper::actionButtonDropdown2($array);
+                return AdminDataTableButtonHelper::datatableButton($array);
             })
             ->addColumn('status', function ($employee) {
                 return AdminDataTableBadgeHelper::statusBadge($employee);

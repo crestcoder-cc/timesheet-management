@@ -40,8 +40,8 @@
                                 <td>{{ $employee->mobile_no }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Date Of Birth</th>
-                                <td>{{ $employee->date_of_birth }}</td>
+                                <th scope="row">Date Of Joining</th>
+                                <td>{{ Carbon\Carbon::parse($employee->registration_date)->format('m-d-Y') }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Gender</th>
@@ -67,7 +67,7 @@
                 <div class="theme-table">
                     <div class="tab-heading mb-5">
                         <h5 class="card-title">Employee Tasks</h5>
-                        <input type="text" name="date_range" id="date_range" value="" />
+                        <input type="text" name="date_range" id="date_range" value=""/>
                     </div>
                     <div class="table-responsive">
                         <table id="basic-1" class="table table-striped nowrap">

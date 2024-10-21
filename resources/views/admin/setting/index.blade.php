@@ -45,13 +45,13 @@
                             <i class="bi bi-house fs-2 me-2"></i>Social Media
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="holiday-setting-tab" data-bs-toggle="tab"
-                                data-bs-target="#holiday_setting" type="button" role="tab"
-                                aria-controls="holiday_setting" aria-selected="true">
-                            <i class="bi bi-house fs-2 me-2"></i>Holiday Management
-                        </button>
-                    </li>
+{{--                    <li class="nav-item" role="presentation">--}}
+{{--                        <button class="nav-link" id="holiday-setting-tab" data-bs-toggle="tab"--}}
+{{--                                data-bs-target="#holiday_setting" type="button" role="tab"--}}
+{{--                                aria-controls="holiday_setting" aria-selected="true">--}}
+{{--                            <i class="bi bi-house fs-2 me-2"></i>Holiday Management--}}
+{{--                        </button>--}}
+{{--                    </li>--}}
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="general_setting" role="tabpanel"

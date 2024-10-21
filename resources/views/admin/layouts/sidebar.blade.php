@@ -8,9 +8,9 @@
         </li>
         <li>
             <a href="{{route('admin.company.index')}}"><img src="{{asset('assets/admin/images/drivers.png')}}" alt="drivers">Total Companies</a>
-            <ul>
-                <li><a href="{{route('admin.company.index')}}"><img src="{{asset('assets/admin/images/arrow-left.png')}}" alt="arrow-left">List of Companies</a></li>
-            </ul>
+{{--            <ul>--}}
+{{--                <li><a href="{{route('admin.company.index')}}"><img src="{{asset('assets/admin/images/arrow-left.png')}}" alt="arrow-left">List of Companies</a></li>--}}
+{{--            </ul>--}}
         </li>
         <li>
             <a href="{{route('admin.setting.index')}}"><img src="{{asset('assets/admin/images/settings.png')}}" alt="Settings">Settings</a>

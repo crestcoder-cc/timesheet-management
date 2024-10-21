@@ -14,7 +14,9 @@ class ResubmitController extends Controller
     {
         $employee_id = Auth::guard('web')->user()->id;
         $employee = EmployeeTask::where('id', $employee_id)->first();
-        $employee_tasks = EmployeeTask::where('employee_id', $employee_id)->get();
+        $employee_tasks = EmployeeTask::where('employee_id', $employee_id)
+            ->where('status', 'reject')
+            ->get();
         $dateArrays = [];
 
 // Iterate over each task and group them by date

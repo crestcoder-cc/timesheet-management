@@ -19,7 +19,7 @@ class TaskStoreRequest extends FormRequest
     {
         return [
             'project'    => 'required',
-            'task' => 'required',
+            'client_id' => 'required',
             'description' => 'required',
             'date' => 'required',
             'start_time' => 'required',

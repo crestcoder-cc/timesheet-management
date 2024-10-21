@@ -38,10 +38,17 @@ $(function () {
         axios
             .post(APP_URL + modal_form_url, formData)
             .then(function (response) {
-                $taskModalForm[ 0 ].reset()
-                $('#add_task_model').modal('hide');
-                loaderHide()
-                notificationToast(response.data.message, 'success')
+                if (response.data.success === true){
+                    $taskModalForm[ 0 ].reset()
+                    $('#add_task_model').modal('hide');
+                    loaderHide()
+                    window.location.reload()
+                    notificationToast(response.data.message, 'success')
+                }else{
+                    loaderHide()
+                    notificationToast(response.data.message, 'warning')
+                }
+
             })
             .catch(function (error) {
                 notificationToast(error.response.data.message, 'warning')
@@ -49,6 +56,30 @@ $(function () {
             })
     })
 
+    let $markAbsentModalForm = $('#markAbsentModalForm')
+    $markAbsentModalForm.on('submit', function (e) {
+        e.preventDefault()
+        loaderView()
+        let formData = new FormData($markAbsentModalForm[ 0 ])
+        axios
+            .post(APP_URL + '/mark-absent', formData)
+            .then(function (response) {
+                if (response.data.success === true){
+                    $markAbsentModalForm[ 0 ].reset()
+                    $('#mark_absent_model').modal('hide');
+                    loaderHide()
+                    window.location.reload()
+                    notificationToast(response.data.message, 'success')
+                }else{
+                    loaderHide()
+                    notificationToast(response.data.message, 'warning')
+                }
 
+            })
+            .catch(function (error) {
+                notificationToast(error.response.data.message, 'warning')
+                loaderHide()
+            })
+    })
 })
 

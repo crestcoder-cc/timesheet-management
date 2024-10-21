@@ -75,5 +75,5 @@
             order: [0, 'desc']
         })
     </script>
-    <script src="{{ asset('assets/admin/custom/datatable.js') }}?v={{time()}}"></script>
+    <script src="{{ asset('assets/company/custom/datatable.js') }}?v={{time()}}"></script>
 @endsection

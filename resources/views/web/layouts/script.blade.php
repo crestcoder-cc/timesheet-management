@@ -35,6 +35,12 @@
         });
         myModal.show();
     });
+    $('#mark_absent').on('click', function () {
+        var myModal = new bootstrap.Modal(document.getElementById('mark_absent_model'), {
+            keyboard: false
+        });
+        myModal.show();
+    });
     $('#btn-close').on('click', function () {
         $('#add_task_model').modal('hide');
     });
@@ -52,4 +58,22 @@
         card.classList.add('card-active');
     }
 </script>
+{{--<script>--}}
+{{--    document.addEventListener('DOMContentLoaded', function() {--}}
+{{--        var dateInput = document.getElementById('date');--}}
+
+{{--        // Get today's date--}}
+{{--        var today = new Date();--}}
+{{--        var year = today.getFullYear();--}}
+{{--        var month = ('0' + (today.getMonth() + 1)).slice(-2);--}}
+{{--        var day = ('0' + today.getDate()).slice(-2);--}}
+
+{{--        // Format the date as YYYY-MM-DD--}}
+{{--        var maxDate = year + '-' + month + '-' + day;--}}
+
+{{--        // Set the max attribute of the date input--}}
+{{--        dateInput.setAttribute('max', maxDate);--}}
+{{--    });--}}
+
+{{--</script>--}}
 @yield('custom-script')

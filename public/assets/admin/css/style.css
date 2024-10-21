@@ -260,7 +260,7 @@ canvas{
 }
 .hotspot {
     background: #E5ECF6;
-    padding: 24px;
+    padding: 12px;
     border-radius: 16px;
     margin-bottom: 30px;
 }
@@ -486,4 +486,14 @@ a.cancel-btn{
 }
 a.order-recived-btn:hover, a.deliver-btn:hover, a.cancel-btn:hover{
     opacity: 0.8;
+}
+.holidaytbl td, .holidaytbl th{
+    text-align: center;
+}
+.calenderview .datepicker-inline {
+    width: 100%;
+}
+
+.calenderview table.table-condensed{
+    width: 100%;
 }

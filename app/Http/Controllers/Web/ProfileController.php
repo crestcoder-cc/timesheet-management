@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 
+use App\Helpers\ImageUploadHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -42,6 +43,10 @@ class ProfileController extends Controller
         $employee->first_name = $request->first_name;
         $employee->last_name = $request->last_name;
         $employee->email = $request->email;
+        if ($request->image) {
+            $image = ImageUploadHelper::imageUpload($request->image, 'profile');
+            $employee->image = $image;
+        }
         if ($request->password) {
             $employee->password = \Hash::make($request->password);
         }

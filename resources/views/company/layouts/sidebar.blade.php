@@ -8,9 +8,15 @@
         </li>
         <li>
             <a href="{{route('company.employee.index')}}"><img src="{{asset('assets/admin/images/drivers.png')}}" alt="drivers">Total Employees</a>
-            <ul>
-                <li><a href="{{route('company.employee.index')}}"><img src="{{asset('assets/admin/images/arrow-left.png')}}" alt="arrow-left">List of Employees</a></li>
-            </ul>
+{{--            <ul>--}}
+{{--                <li><a href="{{route('company.employee.index')}}"><img src="{{asset('assets/admin/images/arrow-left.png')}}" alt="arrow-left">List of Employees</a></li>--}}
+{{--            </ul>--}}
+        </li>
+        <li>
+            <a href="{{route('company.project.index')}}"><img src="{{asset('assets/admin/images/profile.png')}}" alt="Clients">Clients</a>
+        </li>
+        <li>
+            <a href="{{route('company.setting.index')}}"><img src="{{asset('assets/admin/images/settings.png')}}" alt="Settings">Settings</a>
         </li>
         <li>
             <a href="{{route('company.my-profile')}}"><img src="{{asset('assets/admin/images/profile.png')}}" alt="Profile">Profile</a>

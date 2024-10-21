@@ -42,8 +42,13 @@
                                        class="form-control">
                             </div>
                             <div class="col-md-6">
-                                <input type="date" id="date_of_birth" name="date_of_birth" placeholder="Date Of Birth"
-                                       class="form-control dob-date-picker">
+                                <textarea type="text" id="address" name="address" placeholder="Address"
+                                          class="form-control"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="department"
+                                       name="department"
+                                       placeholder="Department">
                             </div>
                             <div class="col-md-6 ">
                                 <select class="form-control" id="gender" name="gender">
@@ -52,11 +57,7 @@
                                     <option value="female">Female</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="department"
-                                       name="department"
-                                       placeholder="Department">
-                            </div>
+
                             <div class="col-md-6 ">
                                 <select class="form-control" id="location" name="location">
                                     <option value="">Select Location</option>
@@ -64,10 +65,31 @@
                                     <option value="Work From Office">Work From Office</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <textarea type="text" id="address" name="address" placeholder="Address"
-                                          class="form-control"></textarea>
+                            <div class="row mt-4">
+                                <!-- Date of Joining -->
+                                <div class="col-md-2 mt-2">
+                                    <label for="registration_date" class="form-label">Date of Joining</label>
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="date" id="registration_date"
+                                           name="registration_date" placeholder="Registration Date"
+                                           class="form-control dob-date-picker">
+                                </div>
+
+                                <!-- Overtime Permission -->
+                                <div class="col-md-3 mt-2">
+                                    <label class="form-label">Overtime Permission</label>
+                                </div>
+                                <div class="col-md-3 mt-2 align-items-center">
+                                    <input type="radio" id="overtime_yes" name="overtime_permission" value="yes">
+                                    <label for="overtime_yes" class="ms-2 me-3">Yes</label>
+
+                                    <input type="radio" id="overtime_no" name="overtime_permission" value="no">
+                                    <label for="overtime_no" class="ms-2">No</label>
+                                </div>
                             </div>
+
+
                         </div>
                         <div class="row mt-5">
                             <div class="col-md-12 text-end">
@@ -84,6 +106,14 @@
     <script>
         let form_url = '/employee'
         let redirect_url = '/employee'
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const dateInput = document.getElementById('registration_date');
+            const today = new Date().toISOString().split('T')[0];
+
+            dateInput.value = today; // Set default value to today
+            dateInput.max = today;   // Disable future dates
+        });
     </script>
     <script src="{{ asset('assets/admin/custom/form.js') }}?v={{time()}}"></script>
 @endsection

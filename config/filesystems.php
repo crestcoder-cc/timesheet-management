@@ -27,9 +27,7 @@ return [
     | Supported Drivers: "local", "ftp", "sftp", "s3"
     |
     */
-
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -43,6 +41,10 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'excel_uploads' => [
+            'driver' => 'local',
+            'root' => public_path('assets/uploads/report'),
+        ],
 
         's3' => [
             'driver' => 's3',
@@ -55,7 +57,6 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-
     ],
 
     /*
@@ -68,9 +69,7 @@ return [
     | the locations of the links and the values should be their targets.
     |
     */
-
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 ];

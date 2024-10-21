@@ -53,33 +53,33 @@
             </div>
             <div class="col-md-3">
                 <div class="dash-counter gray">
-                    <span>Total Work Hours</span>
-                    <h3>150</h3>
+                    <span>Approved Work Hours</span>
+                    <h3>{{$task_approved_hours}}</h3>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="dash-counter">
-                    <span>Overtime Hours</span>
-                    <h3>70</h3>
+                    <span>Approved Overtime Hours</span>
+                    <h3>{{$overtimeFormatted}}</h3>
                 </div>
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6 text-center">
                 <div class="chart-heading">
-                    <h3>Holidays List</h3>
+                    <h3>Holidays of current month</h3>
                 </div>
-                @if(empty($holidays))
+                @if(count($holidays) == 0)
                     <div class="alert alert-info" role="alert">
                         No holidays have been set yet.
                     </div>
                 @else
-                    <table class="table table-striped nowrap" style="width:100%">
+                    <table class="table table-striped nowrap holidaytbl" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Holiday Title</th>
-                            <th>Holiday Date</th>
+                            <th>Title</th>
+                            <th>Date</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,11 +93,11 @@
                     </table>
                 @endif
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6 text-center">
                 <div class="chart-heading">
                     <h3>Holiday Calender</h3>
                 </div>
-                <div class="hotspot">
+                <div class="hotspot calenderview">
                     <div id="calendar"></div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script>
         $(document).ready(function () {
-            var holidays = @json($holidays);
+            var holidays = @json($calender_mark_holiday);
 
             // Initialize Bootstrap Datepicker
             $('#calendar').datepicker({

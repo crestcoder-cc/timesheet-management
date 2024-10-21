@@ -79,11 +79,32 @@
     font-weight: normal;
 }
 .status-present {
-    color: green;
+    color: black;
 }
-#table td {
+/*#table td {*/
+/*    color: #000000;*/
+/*    background-color: #91B5C9;*/
+/*}*/
+#table td.custom-need-to-submit {
     color: #000000;
     background-color: #91B5C9;
+}
+
+#table td.custom-submitted {
+    color: #000000;
+    background-color: #FFC107;
+}
+#table td.ot-bg {
+    color: #000000;
+    background-color: orange !important;
+}
+#table td.custom-approved {
+    color: #000000;
+    background-color: #198754;
+}
+#table td.custom-reject {
+    color: #000000;
+    background-color: #DC3545;
 }
 
 .table-details td {
@@ -135,7 +156,7 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: auto;
 }
 .profile-container img {
     border-radius: 50%;
@@ -165,4 +186,17 @@
     border: 2px solid #0056b3;
     background-color: #0056b3;
     color: #fff;
+}
+.holidaytbl td, .holidaytbl th{
+    text-align: center;
+}
+.no-underline {
+    text-decoration: none;
+}
+.btn-primary{
+    background-color: #63A5A9 !important;
+    border: none;
+}
+.markabsent-btn{
+    min-width: 130px;
 }

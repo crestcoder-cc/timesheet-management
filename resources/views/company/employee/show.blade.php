@@ -40,8 +40,8 @@
                                 <td>{{ $employee->mobile_no }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Date Of Birth</th>
-                                <td>{{ $employee->date_of_birth }}</td>
+                                <th scope="row">Registration Date</th>
+                                <td>{{ $employee->registration_date }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Gender</th>
@@ -60,6 +60,10 @@
                                 <th scope="row">Address</th>
                                 <td>{{ $employee->address }}</td>
                             </tr>
+                            <tr>
+                                <th scope="row">Overtime Permission</th>
+                                <td>{{ ucfirst($employee->overtime_permission) }}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -77,12 +81,14 @@
                         <table id="basic-1" class="table table-striped nowrap">
                             <thead>
                             <tr>
+                                <th>Client</th>
                                 <th>Project</th>
-                                <th>Task</th>
                                 <th>Description</th>
                                 <th>Date</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
+                                <th>Total Hours</th>
+                                <th>OT Hours</th>
                                 <th>Location</th>
                                 <th>Status</th>
 
@@ -110,18 +116,20 @@
 
         $.extend(true, $.fn.dataTable.defaults, {
             columns: [
+                {data: 'client', name: 'client'},
                 {data: 'project', name: 'project'},
-                {data: 'task', name: 'task'},
                 {data: 'description', name: 'description'},
                 {data: 'date', name: 'date'},
                 {data: 'start_time', name: 'start_time'},
                 {data: 'end_time', name: 'end_time'},
+                {data: 'total_hour', name: 'total_hour'},
+                {data: 'ot_hour', name: 'ot_hour'},
                 {data: 'location', name: 'location'},
                 {data: 'status', name: 'status'},
             ],
             order: [0, 'desc']
         })
     </script>
-    <script src="{{ asset('assets/admin/custom/datatable.js') }}?v={{time()}}"></script>
+    <script src="{{ asset('assets/company/custom/datatable.js') }}?v={{time()}}"></script>
 
 @endsection
